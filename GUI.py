@@ -1,6 +1,8 @@
 from tkinter import *
 from google_speech import Speech
 from tkinter import scrolledtext
+from TextReader import TextReader
+
 
 window = Tk()
 
@@ -21,14 +23,9 @@ window.bind('<Return>', func)
 def clicked():
 
     text = txt.get('1.0', 'end-1c')
-
-    lang = "en"
-
-    speech = Speech(text, lang)
-    sox_effects = ("tempo", "1.5")
-    speech.play(sox_effects)
+    speaker = TextReader(text)
+    speaker.speak()
     txt.delete(1.0,END)
-
 
 
 btn = Button(window, text="Speak it", command=clicked)
